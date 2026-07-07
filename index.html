@@ -15,18 +15,18 @@
        VARIÁVEIS GLOBAIS
     ============================================ */
     :root {
-      --bg:#0c0b0a;
-      --surface:#1a1714;
-      --surface-alt:#211e1a;
-      --border:#2e2822;
-      --border-focus:#d97757;
-      --accent:#d97757;
-      --accent-light:rgba(217,119,87,.14);
-      --accent2:#7c5cbf;
-      --accent2-light:rgba(124,92,191,.15);
-      --text:#f0ebe4;
-      --text-muted:#8a7f74;
-      --text-label:#e8956a;
+      --bg:#f4f8fc;
+      --surface:#ffffff;
+      --surface-alt:#eef5fd;
+      --border:#c8d9ee;
+      --border-focus:#0b5cab;
+      --accent:#0b5cab;
+      --accent-light:rgba(11,92,171,.12);
+      --accent2:#69A0D3;
+      --accent2-light:rgba(105,160,211,.15);
+      --text:#16324f;
+      --text-muted:#5f7f9f;
+      --text-label:#0b5cab;
       --radius:14px;
       --radius-sm:8px;
       --shadow:0 2px 12px rgba(0,0,0,.24);
@@ -52,8 +52,8 @@
        CABEÇALHO
     ============================================ */
     header {
-      background: rgba(17,15,13,.96);
-      color: #fff;
+      background: linear-gradient(135deg,#00285C,#69A0D3);
+      color: #ffffff;
       padding: 56px 24px 48px;
       text-align: center;
       position: relative;
@@ -66,8 +66,8 @@
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(ellipse 60% 80% at 20% 50%, rgba(217,119,87,.28) 0%, transparent 70%),
-        radial-gradient(ellipse 50% 70% at 80% 50%, rgba(124,92,191,.35) 0%, transparent 70%);
+        radial-gradient(ellipse 60% 80% at 20% 50%, rgba(11,92,171,.20) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 70% at 80% 50%, rgba(105,160,211,.28) 0%, transparent 70%);
       pointer-events: none;
     }
 
@@ -99,7 +99,7 @@
     }
 
     header h1 span {
-      color: #e8956a;
+      color:#ffffff;
     }
 
     header p {
@@ -280,7 +280,7 @@
     /* Botão principal — Gerar */
     .btn-primary {
       background: var(--accent);
-      color: #fff;
+      color: #ffffff;
       box-shadow: 0 4px 16px rgba(217,119,87,.24);
       flex: 1;
       justify-content: center;
@@ -308,7 +308,7 @@
     /* Botão copiar */
     .btn-copy {
       background: var(--accent2);
-      color: #fff;
+      color: #ffffff;
       box-shadow: 0 4px 16px rgba(42,96,73,.25);
     }
 
@@ -329,8 +329,8 @@
     #promptOutput {
       width: 100%;
       min-height: 360px;
-      background: #11100f;
-      color: #e7ddd3;
+      background: #f8fbff;
+      color: #16324f;
       border: none;
       border-radius: var(--radius-sm);
       padding: 20px;
@@ -348,7 +348,7 @@
       left: 50%;
       transform: translateX(-50%) translateY(20px);
       background: var(--accent2);
-      color: #fff;
+      color: #ffffff;
       padding: 12px 24px;
       border-radius: 100px;
       font-weight: 600;
