@@ -3,7 +3,7 @@
 <html lang="pt-BR"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gerador de Prompt para Sistemas | Implementação Claude</title>
+  <title>Roberto Lino - Prompt Creator</title>
 
   <!-- Google Fonts: Bebas Neue (títulos) + DM Sans (corpo) -->
   <link rel="preconnect" href="https://fonts.googleapis.com/">
@@ -15,22 +15,22 @@
        VARIÁVEIS GLOBAIS
     ============================================ */
     :root {
-      --bg:#f4f8fc;
-      --surface:#ffffff;
-      --surface-alt:#eef5fd;
-      --border:#c8d9ee;
-      --border-focus:#0b5cab;
-      --accent:#0b5cab;
-      --accent-light:rgba(11,92,171,.12);
-      --accent2:#69A0D3;
-      --accent2-light:rgba(105,160,211,.15);
-      --text:#16324f;
-      --text-muted:#5f7f9f;
-      --text-label:#0b5cab;
+      --bg:#020b1f;
+      --surface:#07172f;
+      --surface-alt:#0b2347;
+      --border:rgba(0,229,255,.28);
+      --border-focus:#00e5ff;
+      --accent:#00e5ff;
+      --accent-light:rgba(0,229,255,.14);
+      --accent2:#148cff;
+      --accent2-light:rgba(20,140,255,.18);
+      --text:#e9fbff;
+      --text-muted:#8fc8df;
+      --text-label:#55e8ff;
       --radius:14px;
       --radius-sm:8px;
-      --shadow:0 2px 12px rgba(0,0,0,.24);
-      --shadow-lg:0 8px 32px rgba(0,0,0,.34);
+      --shadow:0 0 22px rgba(0,229,255,.13);
+      --shadow-lg:0 0 36px rgba(0,229,255,.30);
       --font-display:'Anton', sans-serif;
       --font-body:'Open Sans', sans-serif;
     }
@@ -42,17 +42,29 @@
 
     body {
       font-family: var(--font-body);
-      background: var(--bg);
+      background: radial-gradient(circle at top, #083b78 0%, #020b1f 42%, #010614 100%);
       color: var(--text);
       line-height: 1.6;
       min-height: 100vh;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        linear-gradient(rgba(0,229,255,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,229,255,.035) 1px, transparent 1px);
+      background-size: 42px 42px;
+      pointer-events: none;
+      z-index: -1;
     }
 
     /* ============================================
        CABEÇALHO
     ============================================ */
     header {
-      background: linear-gradient(135deg,#00285C,#69A0D3);
+      background: linear-gradient(135deg,#011634 0%,#003b82 48%,#00d9ff 120%);
       color: #ffffff;
       padding: 56px 24px 48px;
       text-align: center;
@@ -66,8 +78,8 @@
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(ellipse 60% 80% at 20% 50%, rgba(11,92,171,.20) 0%, transparent 70%),
-        radial-gradient(ellipse 50% 70% at 80% 50%, rgba(105,160,211,.28) 0%, transparent 70%);
+        radial-gradient(ellipse 60% 80% at 20% 50%, rgba(0,229,255,.22) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 70% at 80% 50%, rgba(20,140,255,.35) 0%, transparent 70%);
       pointer-events: none;
     }
 
@@ -75,15 +87,15 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      background: rgba(255,255,255,.1);
-      border: 1px solid rgba(255,255,255,.2);
+      background: rgba(0,229,255,.12);
+      border: 1px solid rgba(0,229,255,.38);
       border-radius: 100px;
       padding: 4px 14px;
       font-size: .75rem;
       font-weight: 600;
       letter-spacing: .08em;
       text-transform: uppercase;
-      color: rgba(255,255,255,.8);
+      color: #dffcff;
       margin-bottom: 20px;
       position: relative;
     }
@@ -105,7 +117,7 @@
     header p {
       max-width: 620px;
       margin: 0 auto;
-      color: rgba(255,255,255,.7);
+      color: #b9efff;
       font-size: 1rem;
       position: relative;
     }
@@ -155,8 +167,8 @@
 
     .card-icon.orange { background: var(--accent-light); }
     .card-icon.green  { background: var(--accent2-light); }
-    .card-icon.brown  { background: #E8F5DF; }
-    .card-icon.slate  { background: #D6EDD9; }
+    .card-icon.brown  { background: rgba(0,229,255,.10); }
+    .card-icon.slate  { background: rgba(20,140,255,.16); }
 
     .card-header-text h2 {
       font-family: var(--font-display);
@@ -239,7 +251,7 @@
 
     input[type="text"]::placeholder,
     textarea::placeholder {
-      color: #5e5650;
+      color: #7bbcd6;
     }
 
     textarea { min-height: 88px; }
@@ -281,15 +293,15 @@
     .btn-primary {
       background: var(--accent);
       color: #ffffff;
-      box-shadow: 0 4px 16px rgba(217,119,87,.24);
+      box-shadow: 0 0 18px rgba(0,229,255,.32);
       flex: 1;
       justify-content: center;
       font-size: 1rem;
     }
 
     .btn-primary:hover {
-      background: #e8956a;
-      box-shadow: 0 6px 20px rgba(217,119,87,.32);
+      background: #00b8ff;
+      box-shadow: 0 0 26px rgba(0,229,255,.48);
     }
 
     /* Botão secundário — Limpar */
@@ -300,9 +312,9 @@
     }
 
     .btn-secondary:hover {
-      background: var(--bg);
+      background: var(--surface-alt);
       color: var(--text);
-      border-color: #C5BDB5;
+      border-color: var(--accent);
     }
 
     /* Botão copiar */
@@ -313,7 +325,7 @@
     }
 
     .btn-copy:hover {
-      background: #9b7dd4;
+      background: #00d9ff;
     }
 
     /* ============================================
@@ -329,8 +341,8 @@
     #promptOutput {
       width: 100%;
       min-height: 360px;
-      background: #f8fbff;
-      color: #16324f;
+      background: #041126;
+      color: #dffcff;
       border: none;
       border-radius: var(--radius-sm);
       padding: 20px;
@@ -413,13 +425,11 @@
 </head>
 
 <body>
-  <div class="top-nav"><a class="back-link" href="https://site.escolakarenabecia.com/implementacao-claudev/alunos-JUN2026/aula5.html">← Voltar para a Aula 5</a></div>
-
-  <!-- ==========================================
+<!-- ==========================================
        CABEÇALHO
   =========================================== -->
   <header>
-    <div class="badge">✦ Implementação Claude</div>
+    <div class="badge">✦ Roberto Lino - PROMPT CREATOR</div>
     <h1>Gerador de Prompt<br>para Sistemas com <span>I.A.</span></h1>
     <p>Preencha as informações do seu projeto e gere um prompt completo para criar seu sistema web com HTML, CSS, JavaScript, Google Sheets, Apps Script e GitHub Pages.</p>
   </header>
@@ -637,7 +647,7 @@
        RODAPÉ
   =========================================== -->
   <footer>
-    <p>Ferramenta desenvolvida para uso didático — <strong>Escola Karen Abecia</strong></p>
+    <p>Ferramenta desenvolvida por <strong>Roberto Lino</strong></p>
   </footer>
 
   <!-- ==========================================
